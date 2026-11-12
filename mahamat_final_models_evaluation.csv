@@ -1,0 +1,11 @@
+model,mean_reward,std_reward,episodes,seed_start
+mahamat_bakhit/exp_01/final_model.pth,54.4,5.57,5,1000
+mahamat_bakhit/exp_02/final_model.pth,39.0,5.44,5,1000
+mahamat_bakhit/exp_03/final_model.pth,48.0,6.63,5,1000
+mahamat_bakhit/exp_04/final_model.pth,50.6,10.78,5,1000
+mahamat_bakhit/exp_05/final_model.pth,42.0,4.6,5,1000
+mahamat_bakhit/exp_06/final_model.pth,37.2,0.75,5,1000
+mahamat_bakhit/exp_07/final_model.pth,59.4,25.88,5,1000
+mahamat_bakhit/exp_08/final_model.pth,38.4,7.61,5,1000
+mahamat_bakhit/exp_09/final_model.pth,66.6,17.78,5,1000
+mahamat_bakhit/exp_10/final_model.pth,35.0,1.9,5,1000

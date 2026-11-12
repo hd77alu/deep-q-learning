@@ -1,0 +1,11 @@
+model,mean_reward,std_reward,episodes,seed_start
+mahamat_bakhit/exp_01/dqn_model.pth,32.0,11.12,5,1000
+mahamat_bakhit/exp_02/dqn_model.pth,18.6,5.2,5,1000
+mahamat_bakhit/exp_03/dqn_model.pth,47.6,10.38,5,1000
+mahamat_bakhit/exp_04/dqn_model.pth,31.0,5.14,5,1000
+mahamat_bakhit/exp_05/dqn_model.pth,38.6,1.74,5,1000
+mahamat_bakhit/exp_06/dqn_model.pth,27.8,8.42,5,1000
+mahamat_bakhit/exp_07/dqn_model.pth,43.4,5.75,5,1000
+mahamat_bakhit/exp_08/dqn_model.pth,46.8,7.63,5,1000
+mahamat_bakhit/exp_09/dqn_model.pth,29.0,1.1,5,1000
+mahamat_bakhit/exp_10/dqn_model.pth,1.0,0.0,5,1000

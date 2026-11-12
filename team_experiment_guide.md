@@ -8,23 +8,7 @@ This guide outlines the standard workflow for running individual hyperparameter 
 
 Before running any experiments, ensure you have the required dependencies installed in your Python environment:
 
-### Windows Git Bash
-
-```bash
-py -m venv .venv
-source .venv/Scripts/activate
-python -m pip install --upgrade pip
-python -m pip install -r requirements.txt
-```
-
-### macOS/Linux
-
-```bash
-python -m venv .venv
-source .venv/bin/activate
-python -m pip install --upgrade pip
-python -m pip install -r requirements.txt
-```
+Install uv, then run `uv sync` from the repository root. All commands below use `uv run python` and the committed `uv.lock`.
 
 Verify that the following core files exist in the project root:
 * `model.py` (Custom CNN Architecture)
@@ -58,61 +42,61 @@ run_experiment() {
     case "$1" in
         1)
             echo "--> Running Experiment 1 (Baseline)..."
-            python train.py --member-name "$MEMBER" --exp-id 1 \
+            uv run python train.py --member-name "$MEMBER" --exp-id 1 \
                 --lr 1e-4 --gamma 0.99 --batch-size 32 \
                 --eps-start 1.0 --eps-end 0.01 --eps-decay 50000 --total-steps 100000
             ;;
         2)
             echo "--> Running Experiment 2 (Higher Learning Rate)..."
-            python train.py --member-name "$MEMBER" --exp-id 2 \
+            uv run python train.py --member-name "$MEMBER" --exp-id 2 \
                 --lr 2.5e-4 --gamma 0.99 --batch-size 32 \
                 --eps-start 1.0 --eps-end 0.01 --eps-decay 50000 --total-steps 100000
             ;;
         3)
             echo "--> Running Experiment 3 (Lower Learning Rate)..."
-            python train.py --member-name "$MEMBER" --exp-id 3 \
+            uv run python train.py --member-name "$MEMBER" --exp-id 3 \
                 --lr 5e-5 --gamma 0.99 --batch-size 32 \
                 --eps-start 1.0 --eps-end 0.01 --eps-decay 50000 --total-steps 100000
             ;;
         4)
             echo "--> Running Experiment 4 (Larger Batch Size)..."
-            python train.py --member-name "$MEMBER" --exp-id 4 \
+            uv run python train.py --member-name "$MEMBER" --exp-id 4 \
                 --lr 1e-4 --gamma 0.99 --batch-size 64 \
                 --eps-start 1.0 --eps-end 0.01 --eps-decay 50000 --total-steps 100000
             ;;
         5)
             echo "--> Running Experiment 5 (Smaller Batch Size)..."
-            python train.py --member-name "$MEMBER" --exp-id 5 \
+            uv run python train.py --member-name "$MEMBER" --exp-id 5 \
                 --lr 1e-4 --gamma 0.99 --batch-size 16 \
                 --eps-start 1.0 --eps-end 0.01 --eps-decay 50000 --total-steps 100000
             ;;
         6)
             echo "--> Running Experiment 6 (Lower Discount Factor)..."
-            python train.py --member-name "$MEMBER" --exp-id 6 \
+            uv run python train.py --member-name "$MEMBER" --exp-id 6 \
                 --lr 1e-4 --gamma 0.95 --batch-size 32 \
                 --eps-start 1.0 --eps-end 0.01 --eps-decay 50000 --total-steps 100000
             ;;
         7)
             echo "--> Running Experiment 7 (Higher Discount Factor)..."
-            python train.py --member-name "$MEMBER" --exp-id 7 \
+            uv run python train.py --member-name "$MEMBER" --exp-id 7 \
                 --lr 1e-4 --gamma 0.995 --batch-size 32 \
                 --eps-start 1.0 --eps-end 0.01 --eps-decay 50000 --total-steps 100000
             ;;
         8)
             echo "--> Running Experiment 8 (Slow Epsilon Decay)..."
-            python train.py --member-name "$MEMBER" --exp-id 8 \
+            uv run python train.py --member-name "$MEMBER" --exp-id 8 \
                 --lr 1e-4 --gamma 0.99 --batch-size 32 \
                 --eps-start 1.0 --eps-end 0.01 --eps-decay 70000 --total-steps 100000
             ;;
         9)
             echo "--> Running Experiment 9 (Fast Epsilon Decay)..."
-            python train.py --member-name "$MEMBER" --exp-id 9 \
+            uv run python train.py --member-name "$MEMBER" --exp-id 9 \
                 --lr 1e-4 --gamma 0.99 --batch-size 32 \
                 --eps-start 1.0 --eps-end 0.01 --eps-decay 25000 --total-steps 100000
             ;;
         10)
             echo "--> Running Experiment 10 (Higher Minimum Epsilon)..."
-            python train.py --member-name "$MEMBER" --exp-id 10 \
+            uv run python train.py --member-name "$MEMBER" --exp-id 10 \
                 --lr 1e-4 --gamma 0.99 --batch-size 32 \
                 --eps-start 1.0 --eps-end 0.05 --eps-decay 50000 --total-steps 100000
             ;;
@@ -233,7 +217,7 @@ After completing your 10 experiments, inspect the `metrics.csv` file in each fol
 Run the aggregation script from the repository root:
 
 ```bash
-python aggregate_results.py
+uv run python aggregate_results.py
 ```
 
 When prompted, enter your member experiment folder name, for example:
@@ -250,14 +234,7 @@ The script reads each `exp_*/metrics.csv` file and prints a summary table contai
 You can also provide the folder directly without the prompt:
 
 ```bash
-python aggregate_results.py hamed
+uv run python aggregate_results.py hamed
 ```
 
-The results can then be copied into a Markdown report such as `hamed/all_exp_results/exp_table.md`.
-
-| Experiment | Learning rate | Gamma ($\gamma$) | Batch size | Epsilon start ($\epsilon_0$) | Epsilon end ($\epsilon_{min}$) | Epsilon decay | Observed behavior / Performance |
-|---|---|---|---|---|---|---|---|
-| 1 | 1e-4 | 0.99 | 32 | 1.0 | 0.01 | 100,000 | Baseline performance; steady convergence |
-| 2 | 2.5e-4 | 0.99 | 32 | 1.0 | 0.01 | 100,000 | Fast initial gains, high variance |
-| 3 | 5e-5 | 0.99 | 32 | 1.0 | 0.01 | 100,000 | Slow learning, stable trajectory |
-| ... | ... | ... | ... | ... | ... | ... | ... |
+Use `uv run python make_reports.py hamed andrew mahamat_bakhit` to regenerate the required reports from recorded metrics and configurations. Heroine’s report is maintained in her folder. Report actual training rewards and state clearly that these are epsilon-greedy training episodes rather than independent evaluation scores. Epsilon decay values are environment step counts and are separate from the 100,000-step training budget.

@@ -1,5 +1,6 @@
 import argparse
 import csv
+import json
 import os
 import random
 import numpy as np
@@ -46,7 +47,11 @@ def main():
     
     # Create isolated experiment output folder
     exp_dir = os.path.join(args.save_dir, args.member_name, f"exp_{args.exp_id:02d}")
+    if os.path.exists(exp_dir) and os.listdir(exp_dir):
+        raise FileExistsError(f"Experiment directory already contains files: {exp_dir}")
     os.makedirs(exp_dir, exist_ok=True)
+    with open(os.path.join(exp_dir, "config.json"), "w") as config_file:
+        json.dump(vars(args) | {"env_id": "ALE/Pacman-v5"}, config_file, indent=2)
     model_save_path = os.path.join(exp_dir, "dqn_model.pth")
     
     # Set seeds
@@ -58,6 +63,7 @@ def main():
     env = make_atari_env("ALE/Pacman-v5")
     if not isinstance(env.action_space, gym.spaces.Discrete):
         raise TypeError("Expected a discrete action space")
+    env.action_space.seed(args.seed)
     action_dim = env.action_space.n
     
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -156,6 +162,10 @@ def main():
         # Periodically update target network weights
         if total_steps % args.target_update_freq == 0:
             target_net.load_state_dict(online_net.state_dict())
+
+    torch.save(online_net.state_dict(), os.path.join(exp_dir, "final_model.pth"))
+    with open(os.path.join(exp_dir, "completed.json"), "w") as completion_file:
+        json.dump({"total_steps": args.total_steps, "completed_episodes": episode_count}, completion_file, indent=2)
 
     # Save final model weights if no checkpoints were saved
     if not os.path.exists(model_save_path):

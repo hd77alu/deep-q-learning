@@ -25,7 +25,7 @@ run_train() {
     echo "--> Running Experiment $id ($desc)..."
     local start end
     start=$(date +%s)
-    python train.py --member-name "$MEMBER" --exp-id "$id" \
+    uv run python train.py --member-name "$MEMBER" --exp-id "$id" \
         --lr "$lr" --gamma "$gamma" --batch-size "$bs" \
         --eps-start "$es" --eps-end "$ee" --eps-decay "$ed" --total-steps "$TOTAL_STEPS"
     end=$(date +%s)
