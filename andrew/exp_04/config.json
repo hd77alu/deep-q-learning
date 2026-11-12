@@ -1,0 +1,15 @@
+{
+  "member": "andrew",
+  "exp_id": 4,
+  "description": "Lower Discount Factor",
+  "env": "ALE/Pacman-v5",
+  "lr": 0.000075,
+  "gamma": 0.97,
+  "batch_size": 32,
+  "eps_start": 1.0,
+  "eps_end": 0.02,
+  "eps_decay": 60000,
+  "total_steps": 100000,
+  "seed": 42,
+  "training_duration_seconds": 1852
+}

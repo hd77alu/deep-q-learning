@@ -1,0 +1,16 @@
+﻿==================================================
+ DQN Hyperparameter Runner - Member: andrew 
+==================================================
+--> Running Experiment 1 (Baseline (low LR))...
+bash.exe : A.L.E: Arcade Learning Environment (version 0.12.1+8a8fafb)
+At line:1 char:373
++ ... FFERED="1"; & "C:\Program Files\Git\bin\bash.exe" ./run_experiments_a ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (A.L.E: Arcade L...0.12.1+8a8fafb):String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+[Powered by Stella]
+--> Experiment 1 finished in 2948s; saved to andrew/exp_01
+==================================================
+ Experiment 1 completed successfully! 
+==================================================
