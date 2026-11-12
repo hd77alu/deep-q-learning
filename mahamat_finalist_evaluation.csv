@@ -1,0 +1,2 @@
+model,mean_reward,std_reward,episodes,seed_start
+mahamat_bakhit/exp_03/dqn_model.pth,61.7,36.14,10,2000

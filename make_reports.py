@@ -35,9 +35,10 @@ def make_report(member):
         trend = 'rose' if last > first else 'fell'
         observation = f'First 20 mean {first:.1f}; last 20 mean {last:.1f} ({trend}); peak {max(rewards):.0f}; {len(metrics)} completed episodes. Last logged step {metrics[-1]["Total_Steps"]}.'
         rows.append(f'| {index} | '+ ' | '.join(str(v) for v in values) + f' | {observation} |')
-    name = {'hamed':'Hamed','andrew':'Andrew'}.get(member, member.title())
+    name = {'hamed':'Hamed','andrew':'Andrew','mahamat_bakhit':'MahamatBakhit'}.get(member, member.title())
+    display_name = 'Mahamat Bakhit' if member == 'mahamat_bakhit' else name
     output = directory / f'{name}Hyperparameter_experiment_results.md'
-    output.write_text(f'# Hyperparameter experiment results — {name}\n\nEnvironment: `ALE/Pacman-v5`. Rewards are raw training episode rewards under epsilon-greedy actions, not greedy evaluation scores. Epsilon decay is measured in agent steps.\n\n| Experiment | Learning rate | Gamma | Batch size | Epsilon start | Epsilon end | Epsilon decay | Observed behaviour |\n|---|---:|---:|---:|---:|---:|---:|---|\n'+'\n'.join(rows)+'\n')
+    output.write_text(f'# Hyperparameter experiment results — {display_name}\n\nEnvironment: `ALE/Pacman-v5`. Rewards are raw training episode rewards under epsilon-greedy actions, not greedy evaluation scores. Epsilon decay is measured in agent steps.\n\n| Experiment | Learning rate | Gamma | Batch size | Epsilon start | Epsilon end | Epsilon decay | Observed behaviour |\n|---|---:|---:|---:|---:|---:|---:|---|\n'+'\n'.join(rows)+'\n')
     print(output)
 
 if __name__ == '__main__':

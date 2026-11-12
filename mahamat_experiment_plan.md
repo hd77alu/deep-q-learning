@@ -15,4 +15,4 @@ Run from the repository root with `./run_my_experiments.sh all`. Each experiment
 | 9 | 0.0001 | 0.99 | 64 | 1.0 | 0.02 | 50000 |
 | 10 | 0.0001 | 0.99 | 64 | 1.0 | 0.05 | 25000 |
 
-After training: `uv run python make_reports.py mahamat_bakhit`, then `uv run python evaluate.py --episodes 5 --output evaluation_results.csv`. Compare against the existing winner and update the root checkpoint, training plot, and video if Mahamat's model wins.
+All ten runs completed at 100,000 agent steps. The measured results are in `mahamat_bakhit/MahamatBakhitHyperparameter_experiment_results.md` and `mahamat_evaluation.csv`. Experiment 3 was Mahamat’s strongest checkpoint, averaging 47.6 reward over five shared seeds and 61.7 over ten additional seeds. Heroine experiment 8 remained the overall winner.

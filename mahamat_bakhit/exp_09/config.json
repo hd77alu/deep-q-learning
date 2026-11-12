@@ -1,0 +1,18 @@
+{
+  "member_name": "mahamat_bakhit",
+  "exp_id": 9,
+  "save_dir": ".",
+  "seed": 42,
+  "lr": 0.0001,
+  "gamma": 0.99,
+  "batch_size": 64,
+  "eps_start": 1.0,
+  "eps_end": 0.02,
+  "eps_decay": 50000.0,
+  "total_steps": 100000,
+  "target_update_freq": 1000,
+  "buffer_capacity": 20000,
+  "learning_starts": 10000,
+  "train_freq": 4,
+  "env_id": "ALE/Pacman-v5"
+}

@@ -43,7 +43,7 @@ def main():
     if not rows:
         parser.error('No checkpoints matched --glob')
     with args.output.open('w', newline='') as file:
-        writer = csv.DictWriter(file, fieldnames=rows[0].keys())
+        writer = csv.DictWriter(file, fieldnames=rows[0].keys(), lineterminator='\n')
         writer.writeheader()
         writer.writerows(rows)
     print('Best:', max(rows, key=lambda row: row['mean_reward'])['model'])
