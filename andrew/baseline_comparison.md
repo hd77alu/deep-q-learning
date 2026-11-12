@@ -47,11 +47,6 @@ All 20 configurations are different. Both of us used 100,000 steps and seed 42 a
 
 **Learning rate.** The two sets disagree. Andrew's reward fell as the rate rose (7.5e-5: 45.35, 1.5e-4: 38.30, 3e-4: 30.40), while Hamed's lowest rate (5e-5) was his worst run (26.65) and 1e-4 and 2.5e-4 were nearly tied (41.95, 41.70). This is a reminder that single-seed, single-change results do not carry over between baselines.
 
-## Data caveats
-
-- **Hamed's experiment 6 and Andrew's experiment 9 are both missing about 20,000 steps from their CSVs** (last logged steps 80,277 and 79,239). For Andrew's run this is confirmed to be a run that finished (its `config.json` exists) with a final episode that never ended, because `train.py` logs a row only when an episode ends. I believe the same applies to Hamed's run, but I cannot confirm it, since his runs have no `config.json` or log. I earlier suspected his run had been interrupted, and the evidence now points the other way. Their "final" rewards describe an earlier point in training than the other runs.
-- Per-experiment training durations exist only for Andrew's runs, and they are unreliable for comparison (see `experiment_analysis.md`).
-- Both sets are one seed per configuration, 160–220 episodes per run.
 
 ## Conclusion
 
