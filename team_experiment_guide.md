@@ -237,11 +237,4 @@ You can also provide the folder directly without the prompt:
 uv run python aggregate_results.py hamed
 ```
 
-The results can then be copied into a Markdown report such as `hamed/all_exp_results/exp_table.md`.
-
-| Experiment | Learning rate | Gamma ($\gamma$) | Batch size | Epsilon start ($\epsilon_0$) | Epsilon end ($\epsilon_{min}$) | Epsilon decay | Observed behavior / Performance |
-|---|---|---|---|---|---|---|---|
-| 1 | 1e-4 | 0.99 | 32 | 1.0 | 0.01 | 100,000 | Baseline performance; steady convergence |
-| 2 | 2.5e-4 | 0.99 | 32 | 1.0 | 0.01 | 100,000 | Fast initial gains, high variance |
-| 3 | 5e-5 | 0.99 | 32 | 1.0 | 0.01 | 100,000 | Slow learning, stable trajectory |
-| ... | ... | ... | ... | ... | ... | ... | ... |
+Use `uv run python make_reports.py hamed andrew mahamat_bakhit` to regenerate the required reports from recorded metrics and configurations. Heroine’s report is maintained in her folder. Report actual training rewards and state clearly that these are epsilon-greedy training episodes rather than independent evaluation scores. Epsilon decay values are environment step counts and are separate from the 100,000-step training budget.
