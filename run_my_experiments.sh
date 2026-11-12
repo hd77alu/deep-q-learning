@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
-MEMBER="${MEMBER:?Set MEMBER to your name, e.g. MEMBER=alice ./run_my_experiments.sh}"
+MEMBER="${MEMBER:-mahamat_bakhit}"
 RUN="${1:-all}"
 run_one() {
   local id="$1" lr=0.0001 gamma=0.99 batch=64 start=1.0 end=0.05 decay=50000
@@ -17,7 +17,11 @@ run_one() {
     10) decay=25000 ;;
     *) echo "Experiment must be 1-10" >&2; exit 2 ;;
   esac
-  uv run python train.py --member-name "$MEMBER" --exp-id "$id" --lr "$lr" --gamma "$gamma" --batch-size "$batch" --eps-start "$start" --eps-end "$end" --eps-decay "$decay" --total-steps 100000
+  if [[ -f "$MEMBER/exp_$(printf "%02d" "$id")/completed.json" ]]; then
+    echo "Experiment $id already completed; skipping"
+    return
+  fi
+  uv run python train.py --member-name "$MEMBER" --exp-id "$id" --lr "$lr" --gamma "$gamma" --batch-size "$batch" --eps-start "$start" --eps-end "$end" --eps-decay "$decay" --total-steps 100000 --buffer-capacity 20000
 }
 if [[ "$RUN" == all ]]; then
   for id in {1..10}; do run_one "$id"; done

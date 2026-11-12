@@ -1,6 +1,6 @@
 # Deep Q-learning for Atari Pac-Man
 
-A group formative assignment implementing a Deep Q-Network (DQN) from scratch in PyTorch and Gymnasium. The selected game is `ALE/Pacman-v5`. Existing contributors: Hamed, Andrew and Heroine Mutumwinka. The fourth member should add their exact name to this list and to their experiment report.
+A group formative assignment implementing a Deep Q-Network (DQN) from scratch in PyTorch and Gymnasium. The selected game is `ALE/Pacman-v5`. Group members: Hamed, Andrew, Heroine Mutumwinka and Mahamat Bakhit.
 
 ## Setup (uv only)
 
@@ -27,16 +27,16 @@ Flatten (3136) → Linear 512 → ReLU → Linear 5 Q-values
 
 ## Ten experiments per member
 
-Each member must run ten distinct hyperparameter combinations. The fourth member can use `run_my_experiments.sh`, which varies learning rate, gamma, batch size and the three epsilon parameters. From the repository root:
+Each member must run ten distinct hyperparameter combinations. Mahamat Bakhit can use `run_my_experiments.sh`, which varies learning rate, gamma, batch size and the three epsilon parameters. From the repository root:
 
 ```bash
-MEMBER=your_name ./run_my_experiments.sh 1
-MEMBER=your_name ./run_my_experiments.sh all
+./run_my_experiments.sh 1
+./run_my_experiments.sh all
 ```
 
-Each run takes 100,000 agent steps and may take substantial time and memory. Run one experiment first to confirm hardware capacity, then run the others. Runs are saved under `your_name/exp_NN/` with `config.json`, `metrics.csv`, `dqn_model.pth`, `final_model.pth` and `completed.json`. A populated experiment folder is protected from accidental overwrite. The original `dqn_model.pth` files in the three existing member folders were selected using peak exploratory training reward; this can be noisy.
+Each run takes 100,000 agent steps. Mahamat’s runner uses a 20,000-transition replay buffer to fit the available 8 GB RAM; earlier members used 100,000, so cross-member results are not controlled for buffer size. Run one experiment first to confirm hardware capacity, then run the others. Runs are saved under `mahamat_bakhit/exp_NN/` with `config.json`, `metrics.csv`, `dqn_model.pth`, `final_model.pth` and `completed.json`. A populated experiment folder is protected from accidental overwrite. The original `dqn_model.pth` files in the three existing member folders were selected using peak exploratory training reward; this can be noisy.
 
-After the ten runs, write `your_name/YourNameHyperparameter_experiment_results.md` with ten rows containing learning rate, gamma, batch size, epsilon start, epsilon end, epsilon decay and evidence-based observed behaviour. Keep the models and logs for all ten runs.
+After the ten runs, write `mahamat_bakhit/MahamatBakhitHyperparameter_experiment_results.md` with ten rows containing learning rate, gamma, batch size, epsilon start, epsilon end, epsilon decay and evidence-based observed behaviour. Keep the models and logs for all ten runs.
 
 ## Evaluation, plots and gameplay
 
