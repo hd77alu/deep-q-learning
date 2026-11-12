@@ -1,0 +1,4 @@
+model,mean_reward,std_reward,episodes,seed_start
+heroine/exp_04/dqn_model.pth,53.5,13.18,10,2000
+heroine/exp_06/dqn_model.pth,84.0,56.79,10,2000
+heroine/exp_08/dqn_model.pth,170.2,91.59,10,2000
