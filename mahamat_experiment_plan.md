@@ -15,4 +15,4 @@ Run from the repository root with `./run_my_experiments.sh all`. Each experiment
 | 9 | 0.0001 | 0.99 | 64 | 1.0 | 0.02 | 50000 |
 | 10 | 0.0001 | 0.99 | 64 | 1.0 | 0.05 | 25000 |
 
-All ten runs completed at 100,000 agent steps. The measured results are in `mahamat_bakhit/MahamatBakhitHyperparameter_experiment_results.md` and `mahamat_evaluation.csv`. Experiment 3 was Mahamat’s strongest checkpoint, averaging 47.6 reward over five shared seeds and 61.7 over ten additional seeds. Heroine experiment 8 remained the overall winner.
+All ten runs completed at 100,000 agent steps. The measured results are in `mahamat_bakhit/MahamatBakhitHyperparameter_experiment_results.md` and `mahamat_evaluation.csv`. Among peak-episode checkpoints, experiment 3 was strongest, averaging 47.6 reward over five shared seeds and 61.7 over ten additional seeds. End-of-training weights for experiment 9 scored 66.6 over the first five seeds and 57.4 over ten additional seeds. Heroine experiment 8 remained the overall winner.
