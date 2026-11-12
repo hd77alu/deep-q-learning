@@ -1,0 +1,97 @@
+﻿==================================================
+ DQN Hyperparameter Runner - Member: andrew 
+==================================================
+--> Running Experiment 2 (Medium Learning Rate)...
+bash.exe : A.L.E: Arcade Learning Environment (version 0.12.1+8a8fafb)
+At line:6 char:1
++ & "C:\Program Files\Git\bin\bash.exe" -c 'set -e; for i in 2 3 4 5 6  ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (A.L.E: Arcade L...0.12.1+8a8fafb):String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+[Powered by Stella]
+--> Experiment 2 finished in 1771s; saved to andrew/exp_02
+==================================================
+ Experiment 2 completed successfully! 
+==================================================
+==================================================
+ DQN Hyperparameter Runner - Member: andrew 
+==================================================
+--> Running Experiment 3 (High Learning Rate)...
+A.L.E: Arcade Learning Environment (version 0.12.1+8a8fafb)
+[Powered by Stella]
+--> Experiment 3 finished in 1652s; saved to andrew/exp_03
+==================================================
+ Experiment 3 completed successfully! 
+==================================================
+==================================================
+ DQN Hyperparameter Runner - Member: andrew 
+==================================================
+--> Running Experiment 4 (Lower Discount Factor)...
+A.L.E: Arcade Learning Environment (version 0.12.1+8a8fafb)
+[Powered by Stella]
+--> Experiment 4 finished in 1852s; saved to andrew/exp_04
+==================================================
+ Experiment 4 completed successfully! 
+==================================================
+==================================================
+ DQN Hyperparameter Runner - Member: andrew 
+==================================================
+--> Running Experiment 5 (Higher Discount Factor)...
+A.L.E: Arcade Learning Environment (version 0.12.1+8a8fafb)
+[Powered by Stella]
+--> Experiment 5 finished in 2268s; saved to andrew/exp_05
+==================================================
+ Experiment 5 completed successfully! 
+==================================================
+==================================================
+ DQN Hyperparameter Runner - Member: andrew 
+==================================================
+--> Running Experiment 6 (Batch Size 48)...
+A.L.E: Arcade Learning Environment (version 0.12.1+8a8fafb)
+[Powered by Stella]
+--> Experiment 6 finished in 3047s; saved to andrew/exp_06
+==================================================
+ Experiment 6 completed successfully! 
+==================================================
+==================================================
+ DQN Hyperparameter Runner - Member: andrew 
+==================================================
+--> Running Experiment 7 (Batch Size 96)...
+A.L.E: Arcade Learning Environment (version 0.12.1+8a8fafb)
+[Powered by Stella]
+--> Experiment 7 finished in 2896s; saved to andrew/exp_07
+==================================================
+ Experiment 7 completed successfully! 
+==================================================
+==================================================
+ DQN Hyperparameter Runner - Member: andrew 
+==================================================
+--> Running Experiment 8 (Lower Initial Epsilon)...
+A.L.E: Arcade Learning Environment (version 0.12.1+8a8fafb)
+[Powered by Stella]
+--> Experiment 8 finished in 1837s; saved to andrew/exp_08
+==================================================
+ Experiment 8 completed successfully! 
+==================================================
+==================================================
+ DQN Hyperparameter Runner - Member: andrew 
+==================================================
+--> Running Experiment 9 (Higher Minimum Epsilon)...
+A.L.E: Arcade Learning Environment (version 0.12.1+8a8fafb)
+[Powered by Stella]
+--> Experiment 9 finished in 2566s; saved to andrew/exp_09
+==================================================
+ Experiment 9 completed successfully! 
+==================================================
+==================================================
+ DQN Hyperparameter Runner - Member: andrew 
+==================================================
+--> Running Experiment 10 (Slower Epsilon Decay)...
+A.L.E: Arcade Learning Environment (version 0.12.1+8a8fafb)
+[Powered by Stella]
+--> Experiment 10 finished in 41975s; saved to andrew/exp_10
+==================================================
+ Experiment 10 completed successfully! 
+==================================================
+ALL_2_10_DONE
