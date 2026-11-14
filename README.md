@@ -1,6 +1,6 @@
 # Deep Q-learning for Atari Pac-Man
 
-This project implements a Deep Q-Network (DQN) from scratch in PyTorch and Gymnasium. The selected game is `ALE/Pacman-v5`. Group members: Hamed, Andrew, Heroine Mutumwinka and Mahamat Bakhit.
+This project implements a Deep Q-Network (DQN) from scratch in PyTorch and Gymnasium. The selected game is `ALE/Pacman-v5`. Group members: Hamed, Andrew, Heroine Mutumwinka, and Mahamat Bakhit.
 
 ## Repository Structure
 
@@ -55,7 +55,7 @@ flowchart TD
     L --> M[Linear 5 Q-values]
 ```
 
-`wrappers.py` applies frame skip 4, resizing and frame stacking. `model.py` defines the CNN. `train.py` keeps an online network and a periodically copied target network. It explores with linear epsilon decay, stores transitions in `buffer.py`, samples random batches, and minimizes Huber loss between the chosen Q-value and `clipped_reward + gamma × max(target Q(next_state))` for nonterminal transitions. Adam updates the online network every four agent steps after 10,000 warm-up steps. Raw episode rewards, lengths and cumulative steps are logged in each `metrics.csv`.
+`wrappers.py` applies frame skip 4, resizing, and frame stacking. `model.py` defines the CNN. `train.py` keeps an online network and a periodically copied target network. It explores with linear epsilon decay, stores transitions in `buffer.py`, samples random batches, and minimizes Huber loss between the chosen Q-value and `clipped_reward + gamma × max(target Q(next_state))` for nonterminal transitions. Adam updates the online network every four agent steps after 10,000 warm-up steps. Raw episode rewards, lengths, and cumulative steps are logged in each `metrics.csv`.
 
 ## Gameplay Video
 
@@ -63,14 +63,14 @@ flowchart TD
 
 ## Ten experiments per member
 
-Each of the four members completed ten distinct hyperparameter combinations. For example from the repository root:
+Each of the four members completed ten distinct hyperparameter combinations. For example, from the repository root:
 
 ```bash
 ./run_experiments_heroine.sh 1
 ./run_experiments_heroine.sh all
 ```
 
-Each run takes 100,000 agent steps. Mahamat’s runner uses a 20,000-transition replay buffer to fit the available 8 GB RAM; earlier members used 100,000, so cross-member results are not controlled for buffer size. The runs are saved under `mahamat_bakhit/exp_NN/` with `config.json`, `metrics.csv`, `dqn_model.pth`, `final_model.pth` and `completed.json`. A populated experiment folder is protected from accidental overwrite. The original `dqn_model.pth` files in the three existing member folders were selected using peak exploratory training reward; this can be noisy.
+Each run takes 100,000 agent steps. Mahamat’s runner uses a 20,000-transition replay buffer to fit the available 8 GB of RAM; earlier members used 100,000, so cross-member results are not controlled for buffer size. The runs are saved under `mahamat_bakhit/exp_NN/` with `config.json`, `metrics.csv`, `dqn_model.pth`, `final_model.pth` and `completed.json`. A populated experiment folder is protected from accidental overwrite. The original `dqn_model.pth` files in the three existing member folders were selected using peak exploratory training reward; this can be noisy.
 
 Full guide is avilable at [team_experiment_guide.md](./team_experiment_guide.md)
 
@@ -82,13 +82,13 @@ Evaluate saved checkpoints under greedy actions and identical seeds:
 uv run python evaluate.py --episodes 5 --output evaluation_results.csv
 ```
 
-All 40 saved checkpoints were evaluated with greedy actions on the same five seeds (1000–1004); results are in `evaluation_results.csv`. The highest mean reward was **Heroine experiment 8: 140.4**, followed by Heroine experiment 6: 100.2. Among Mahamat’s peak-episode checkpoints, experiment 3 was best: 47.6. A ten-episode finalist comparison on seeds 2000–2009 gave Heroine experiment 8 a mean reward of **170.2**, Heroine experiment 6 **84.0**, Heroine experiment 4 **53.5**, and Mahamat experiment 3 **61.7**. The ten-episode results are in `finalist_evaluation.csv` and `mahamat_finalist_evaluation.csv`. A further check of Mahamat’s end-of-training weights (`mahamat_final_models_evaluation.csv`) found experiment 9’s `final_model.pth` scored 66.6 over the first five seeds, versus 29.0 for its peak-episode checkpoint. That final model scored 57.4 over ten additional seeds (`mahamat_final_model_followup.csv`), still below the selected model. This illustrates why choosing a checkpoint by one exploratory training episode is unreliable. Heroine experiment 8 is the final selected checkpoint, copied to root `dqn_model.pth`. Its reward, episode-length and step plot is `plots/heroine_exp08_training.png`. Our evaluation uses a finite set of seeds, so scores are estimates, not guarantees. To regenerate it:
+All 40 saved checkpoints were evaluated with greedy actions on the same five seeds (1000–1004); results are in `evaluation_results.csv`. The highest mean reward was **Heroine experiment 8: 140.4**, followed by Heroine experiment 6: 100.2. Among Mahamat’s peak-episode checkpoints, experiment 3 was best: 47.6. A ten-episode finalist comparison on seeds 2000–2009 gave Heroine experiment 8 a mean reward of **170.2**, Heroine experiment 6 **84.0**, Heroine experiment 4 **53.5**, and Mahamat experiment 3 **61.7**. The ten-episode results are in `finalist_evaluation.csv` and `mahamat_finalist_evaluation.csv`. A further check of Mahamat’s end-of-training weights (`mahamat_final_models_evaluation.csv`) found experiment 9’s `final_model.pth` scored 66.6 over the first five seeds, versus 29.0 for its peak-episode checkpoint. That final model scored 57.4 over ten additional seeds (`mahamat_final_model_followup.csv`), still below the selected model. This illustrates why choosing a checkpoint by one exploratory training episode is unreliable. Heroine experiment 8 is the final selected checkpoint, copied to root `dqn_model.pth`. Its reward, episode-length, and step plot is `plots/heroine_exp08_training.png`. Our evaluation uses a finite set of seeds, so scores are estimates, not guarantees. To regenerate it:
 
 ```bash
 uv run python plot_training.py heroine/exp_08/metrics.csv --output plots/best_training.png
 ```
 
-Display the current selected model:
+Display the best selected model:
 
 ```bash
 uv run python play.py --model final_model/dqn_model.pth
