@@ -1,7 +1,0 @@
-pandas
-torch
-gymnasium[atari]
-ale-py
-AutoROM[accept-rom-license]
-opencv-python
-matplotlib

@@ -1,8 +1,33 @@
 # Deep Q-learning for Atari Pac-Man
 
-A group formative assignment implementing a Deep Q-Network (DQN) from scratch in PyTorch and Gymnasium. The selected game is `ALE/Pacman-v5`. Group members: Hamed, Andrew, Heroine Mutumwinka and Mahamat Bakhit.
+This project implements a Deep Q-Network (DQN) from scratch in PyTorch and Gymnasium. The selected game is `ALE/Pacman-v5`. Group members: Hamed, Andrew, Heroine Mutumwinka and Mahamat Bakhit.
 
-## Setup (uv only)
+## Repository Structure
+
+```text
+.
+├── train.py                         # Train a DQN and save experiment outputs
+├── evaluate.py                      # Evaluate saved model checkpoints
+├── play.py                          # Play Pac-Man with a trained model
+├── model.py                         # DQN neural network
+├── buffer.py                        # Experience replay buffer
+├── wrappers.py                      # Atari preprocessing and frame stacking
+├── aggregate_results.py             # Summarize experiment metrics
+├── make_reports.py                  # Generate experiment reports
+├── plot_training.py                 # Plot training metrics
+├── pyproject.toml                   # Project metadata and dependencies
+├── uv.lock                          # Locked dependency versions
+├── final_model/                     # Selected trained checkpoint
+├── plots/                           # Training and experiment plots
+├── videos/                          # Gameplay recordings
+├── andrew/                          # Andrew's experiment results
+├── hamed/                           # Hamed's experiment results
+├── heroine/                         # Heroine's experiment results
+├── mahamat_bakhit/                  # Mahamat Bakhit's experiment results
+└── team_experiments_results/        # Combined experiment reports
+```
+
+## Setup
 
 Install [uv](https://docs.astral.sh/uv/getting-started/installation/), then from the repository root run:
 
@@ -12,31 +37,42 @@ uv sync
 
 `pyproject.toml` and `uv.lock` specify the environment. Do not use the older `requirements.txt` instructions.
 
-## Architecture and training
+## Model Architecture
 
-```text
-Atari RGB frames → grayscale 84×84 → four-frame stack (4×84×84)
-                                  ↓
-Conv 4→32, 8×8 stride 4 → ReLU
-Conv 32→64, 4×4 stride 2 → ReLU
-Conv 64→64, 3×3 stride 1 → ReLU
-Flatten (3136) → Linear 512 → ReLU → Linear 5 Q-values
+```mermaid
+flowchart TD
+    A[Atari RGB frames] --> B[Grayscale 84x84]
+    B --> C[Four-frame stack<br/>4x84x84]
+    C --> D[Conv 4 to 32<br/>8x8 stride 4]
+    D --> E[ReLU]
+    E --> F[Conv 32 to 64<br/>4x4 stride 2]
+    F --> G[ReLU]
+    G --> H[Conv 64 to 64<br/>3x3 stride 1]
+    H --> I[ReLU]
+    I --> J[Flatten<br/>3136]
+    J --> K[Linear 512]
+    K --> L[ReLU]
+    L --> M[Linear 5 Q-values]
 ```
 
 `wrappers.py` applies frame skip 4, resizing and frame stacking. `model.py` defines the CNN. `train.py` keeps an online network and a periodically copied target network. It explores with linear epsilon decay, stores transitions in `buffer.py`, samples random batches, and minimizes Huber loss between the chosen Q-value and `clipped_reward + gamma × max(target Q(next_state))` for nonterminal transitions. Adam updates the online network every four agent steps after 10,000 warm-up steps. Raw episode rewards, lengths and cumulative steps are logged in each `metrics.csv`.
 
+## Gameplay Video
+
+[![link](https://github.com/hd77alu/Portfolio101/blob/8fef27f4ffd910a9aaf4e5690bd2497c4c5e9408/images/pac-man-sc.png)](https://youtube.com/shorts/GWpoid5EPzc)
+
 ## Ten experiments per member
 
-Each of the four members completed ten distinct hyperparameter combinations. Mahamat Bakhit used `run_my_experiments.sh`, which varies learning rate, gamma, batch size and the three epsilon parameters. From the repository root:
+Each of the four members completed ten distinct hyperparameter combinations. For example from the repository root:
 
 ```bash
-./run_my_experiments.sh 1
-./run_my_experiments.sh all
+./run_experiments_heroine.sh 1
+./run_experiments_heroine.sh all
 ```
 
 Each run takes 100,000 agent steps. Mahamat’s runner uses a 20,000-transition replay buffer to fit the available 8 GB RAM; earlier members used 100,000, so cross-member results are not controlled for buffer size. The runs are saved under `mahamat_bakhit/exp_NN/` with `config.json`, `metrics.csv`, `dqn_model.pth`, `final_model.pth` and `completed.json`. A populated experiment folder is protected from accidental overwrite. The original `dqn_model.pth` files in the three existing member folders were selected using peak exploratory training reward; this can be noisy.
 
-The four required experiment tables are in the member folders. Mahamat’s table is `mahamat_bakhit/MahamatBakhitHyperparameter_experiment_results.md`; all ten runs have `completed.json` confirming 100,000 steps.
+Full guide is avilable at [team_experiment_guide.md](./team_experiment_guide.md)
 
 ## Evaluation, plots and gameplay
 
@@ -55,7 +91,7 @@ uv run python plot_training.py heroine/exp_08/metrics.csv --output plots/best_tr
 Display the current selected model:
 
 ```bash
-uv run python play.py --model dqn_model.pth
+uv run python play.py --model final_model/dqn_model.pth
 ```
 
 Record a gameplay video:
@@ -65,11 +101,3 @@ uv run python play.py --model dqn_model.pth --video-dir videos --headless
 ```
 
 The [gameplay demonstration](videos/rl-video-episode-0.mp4) was recorded from seed 2000 with greedy actions; the episode scored 202 over 906 agent steps. The video uses the final selected checkpoint.
-
-## Submission checklist
-
-- Four named experiment reports and 40 experiment model folders.
-- Training plots for the winning experiment.
-- `evaluation_results.csv`, finalist comparisons, selected model and gameplay video.
-- `Task allocation sheet.pdf` with the four actual member names and responsibilities.
-- Confirm the project installs with `uv sync` and `play.py` runs using the chosen checkpoint.
