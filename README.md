@@ -35,7 +35,7 @@ Install [uv](https://docs.astral.sh/uv/getting-started/installation/), then from
 uv sync
 ```
 
-`pyproject.toml` and `uv.lock` specify the environment. Do not use the older `requirements.txt` instructions.
+`pyproject.toml` and `uv.lock` specify the environment.
 
 ## Model Architecture
 
@@ -80,7 +80,7 @@ Evaluate saved checkpoints under greedy actions and identical seeds:
 uv run python evaluate.py --episodes 5 --output evaluation_results.csv
 ```
 
-All 40 saved checkpoints were evaluated with greedy actions on the same five seeds (1000–1004); results are in `evaluation_results.csv`. The highest mean reward was **Heroine experiment 8: 140.4**, followed by Heroine experiment 6: 100.2. Heroine experiment 8 is the final selected checkpoint, copied to final_model folder as `dqn_model.pth`. Its reward, episode-length, and step plot is `plots/heroine_exp08_training.png`. Our evaluation uses a finite set of seeds, so scores are estimates, not guarantees. To regenerate it:
+All 40 saved checkpoints were evaluated with greedy actions on the same five seeds (1000–1004); results are in `evaluation_results.csv`. The highest mean reward was **Heroine experiment 8: 140.4**, followed by Heroine experiment 6: 100.2. Heroine experiment 8 is the final selected checkpoint, copied to the final_model folder as `dqn_model.pth`. Its reward, episode-length, and step plot is `plots/heroine_exp08_training.png`. Our evaluation uses a finite set of seeds, so scores are estimates, not guarantees. To regenerate it:
 
 ```bash
 uv run python plot_training.py heroine/exp_08/metrics.csv --output plots/best_training.png
