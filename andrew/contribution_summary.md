@@ -1,4 +1,4 @@
-# Individual Contribution — Andrew
+# Individual Contribution - Andrew
 
 **Task:** run 10 hyperparameter-tuning experiments for a DQN agent on Atari Pac-Man (Formative 3), reusing the group's shared training pipeline.
 
