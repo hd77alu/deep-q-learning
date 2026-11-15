@@ -1,6 +1,6 @@
 # Comparison with Hamed's Baseline Experiments
 
-Andrew's numbers come from `andrew/exp_NN/metrics.csv`, Hamed's from `hamed/exp_NN/metrics.csv`, using the same calculations for both. Hamed's files were only read. He has no `config.json`, so his hyperparameters are taken from `run_experiments_hamed.sh`, and no training durations exist for his runs.
+My numbers come from `andrew/exp_NN/metrics.csv`, Hamed's from `hamed/exp_NN/metrics.csv`, using the same calculations for both. Hamed's files were only read. He has no `config.json`, so his hyperparameters are taken from `run_experiments_hamed.sh`, and no training durations exist for his runs.
 
 **All rewards here are training-episode rewards.** Neither of us ran a separate greedy evaluation, so nothing in this comparison is evaluation performance.
 
@@ -37,7 +37,7 @@ All 20 configurations are different. Both of us used 100,000 steps and seed 42 a
 | Best run by whole-run average | Exp 7, 32.50 | Exp 4, 34.59 |
 | Worst run by last-20 average | Exp 9, 27.70 | Exp 3, 26.65 (lr 5e-5) |
 
-**Best configurations.** Andrew's best (experiment 7, 61.00) is higher than Hamed's best (experiment 4, 47.90) on last-20 reward, but on whole-run average Hamed's experiment 4 (34.59) is higher than Andrew's experiment 7 (32.50). The two sets agree on one thing: in each, the largest batch size tested was the top or near-top run on last-20 reward (Andrew batch 96 → 61.00; Hamed batch 64 → 47.90, against 41.95 and 41.85 for his batch 32 and 16). With one seed each, that is suggestive, not established.
+**Best configurations.** My best (experiment 7, 61.00) is higher than Hamed's best (experiment 4, 47.90) on last-20 reward, but on whole-run average Hamed's experiment 4 (34.59) is higher than Andrew's experiment 7 (32.50). The two sets agree on one thing: in each, the largest batch size tested was the top or near-top run on last-20 reward (Andrew batch 96 → 61.00; Hamed batch 64 → 47.90, against 41.95 and 41.85 for his batch 32 and 16). With one seed each, that is suggestive, not established.
 
 **Averages and maxima.** The two sets are practically level. Mean last-20 reward differs by under 1 point (40.18 vs 41.05) and mean whole-run reward by 0.3. Both sets contain one 345-point episode, and in both it occurred in a run that was otherwise unremarkable (Andrew's experiment 3 reached it at step 35,891 while epsilon was still about 0.41, so exploration likely produced it). Maximum reward is a poor indicator of learning quality.
 
